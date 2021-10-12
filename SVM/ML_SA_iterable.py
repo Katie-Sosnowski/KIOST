@@ -29,13 +29,19 @@ import pandas as pd
 import sys
 import os
 
+###MODIFY THESE TO SPECIFY TRAINING EXPERIMENT TO RUN###
+train_file = 'SA_train_rep1.csv'
+labels = 'levelSat_3classRange'
+
 # Read in the data:
-os.chdir('/Users/jtsosnowski/Desktop/UA/YoonLab/CrudeOil/KATIE/SARA_sat_asp_newscoring_range')
-data = pd.read_csv('SA_train_rep1.csv')
+data = pd.read_csv(train_file)
+
 # Define y (actual class) and corresponding x (spectral data)
-y = data.loc[:,'levelSaturate'].values
-x = data.drop(['ID', 'Name', '%Saturate', 'levelSaturate', '%Asphaltene', 'levelAsphaltene'],axis=1)
-# Run random splitting, PCA, and all SVM parameter combinations 100 times
+y = data.loc[:,labels].values
+x = data.drop(['ID', 'Name', '%Saturate', 'levelSat_4classQuartiles', 'levelSat_2classMedian', 'levelSat_3classRange',
+               '%Asphaltene', 'levelAsp_4classQuartiles', 'levelAsp_3classQuartiles', 'levelAsp_3classRange1530', 'levelAsp_3classRange1020'],axis=1)
+
+# Run random splitting, PCA, and all SVM parameter combinations 10 times
 for i in range(10):
     # Split into test vs train data (70% train, 30% test)
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=.30, stratify = y, random_state=None)

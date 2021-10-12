@@ -29,34 +29,41 @@ from matplotlib.figure import Figure
 #CSV (for writing data to file)
 import csv
 
+###MODIFY THESE TO SPECIFY THE VALIDATION EXPERIMENT TO RUN###
+labels = 'levelSat_3classRange'
+display_labels = ['Low \n (0-29.9%)', 'Medium \n (30-59.9%)', 'High \n (60% or more)']
+ker = 'rbf'
+gam = 0.1
+c = 1
+
 # Read in the training data:
-os.chdir('/Users/jtsosnowski/Desktop/UA/YoonLab/CrudeOil/KATIE/SARA_sat_asp_newscoring_range')
 train_data = pd.read_csv('SA_train.csv')
 # Define y (actual class) and corresponding x (spectral data)
-y_train = train_data.loc[:,'levelSaturate'].values
-x_train = train_data.drop(['ID', 'Name','%Saturate', 'levelSaturate', '%Asphaltene', 'levelAsphaltene'],axis=1)
+y_train = train_data.loc[:,labels].values
+x_train = train_data.drop(['ID', 'Name', '%Saturate', 'levelSat_4classQuartiles', 'levelSat_2classMedian', 'levelSat_3classRange',
+               '%Asphaltene', 'levelAsp_4classQuartiles', 'levelAsp_3classQuartiles', 'levelAsp_3classRange1530', 'levelAsp_3classRange1020'],axis=1)
 
 
-# Read in the test data:
+# Read in the test data
 test_data = pd.read_csv('SA_validation.csv')
-y_test = test_data.loc[:,'levelSaturate'].values
-x_test = test_data.drop(['ID', 'Name','%Saturate', 'levelSaturate', '%Asphaltene', 'levelAsphaltene'],axis=1)
+y_test = test_data.loc[:,labels].values
+x_test = test_data.drop(['ID', 'Name', '%Saturate', 'levelSat_4classQuartiles', 'levelSat_2classMedian', 'levelSat_3classRange',
+               '%Asphaltene', 'levelAsp_4classQuartiles', 'levelAsp_3classQuartiles', 'levelAsp_3classRange1530', 'levelAsp_3classRange1020'],axis=1)
 test_IDs = test_data.loc[:,'ID'].values
 
 # Define PCA parameters
-PCA = PCA(n_components=10, svd_solver='randomized', whiten=True)
+PCA = PCA(n_components=8, svd_solver='randomized', whiten=True)
+
 # Fit training data
 X_train = PCA.fit_transform(x_train)
+
 # Run PCA on test data
 X_test = PCA.transform(x_test)
 
-# Define SVM parameters
-ker='rbf'
-gam=0.1
-c=1
 # Create classifier
 clf = svm.SVC(kernel=ker, gamma=gam, C=c)
-# Generate predicted class (y=label 0,1,2,or3; X=PCs) 
+
+# Generate predicted class
 y_pred = clf.fit(X_train, y_train).predict(X_test)
 for count, sample in enumerate(y_test):
     if y_test[count] != y_pred[count]:
@@ -65,6 +72,6 @@ for count, sample in enumerate(y_test):
 # Compute confusion matrix and accuracy
 accuracy = accuracy_score(y_test, y_pred)
 print("accuracy:", accuracy)
-plot_confusion_matrix(clf, X_test, y_test, labels= [0,1,2], values_format='d', display_labels=['Low \n (0-29.9%)', 'Medium \n (30-59.9%)', 'High \n (60% or more)'])
+plot_confusion_matrix(clf, X_test, y_test, labels= [0,1,2], values_format='d', display_labels=display_labels)
 plt.show()
 
