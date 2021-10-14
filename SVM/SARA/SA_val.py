@@ -30,11 +30,13 @@ from matplotlib.figure import Figure
 import csv
 
 ###MODIFY THESE TO SPECIFY THE VALIDATION EXPERIMENT TO RUN###
-labels = 'levelSat_3classRange'
-display_labels = ['Low \n (0-29.9%)', 'Medium \n (30-59.9%)', 'High \n (60% or more)']
+labels = 'levelAsp_3classRange1020'
+display_labels = ['Low \n (0-9.9%)',
+                  'Medium \n (10-19.9%)', 'High \n (20% or more)']
 ker = 'rbf'
 gam = 0.1
 c = 1
+classes = [0,1,2] #depends on number of classes, increase or decrease accordingly, must start with 0
 
 # Read in the training data:
 train_data = pd.read_csv('SA_train.csv')
@@ -72,6 +74,6 @@ for count, sample in enumerate(y_test):
 # Compute confusion matrix and accuracy
 accuracy = accuracy_score(y_test, y_pred)
 print("accuracy:", accuracy)
-plot_confusion_matrix(clf, X_test, y_test, labels= [0,1,2], values_format='d', display_labels=display_labels)
+plot_confusion_matrix(clf, X_test, y_test, labels=classes, values_format='d', display_labels=display_labels)
 plt.show()
 
