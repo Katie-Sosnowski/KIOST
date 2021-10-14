@@ -30,7 +30,6 @@ from matplotlib.figure import Figure
 import csv
 
 # Read in the training data:
-os.chdir('/Users/jtsosnowski/Desktop/UA/YoonLab/CrudeOil/KATIE/SARA_new/')
 train_data = pd.read_csv('SARA_train.csv')
 # Define y (actual class) and corresponding x (spectral data)
 y_train = train_data.loc[:,'levelAsphaltene'].values
@@ -38,7 +37,7 @@ x_train = train_data.drop(['ID', 'Name','%Saturate', 'levelSaturate', '%Aromatic
 
 
 # Read in the test data:
-test_data = pd.read_csv('validation.csv')
+test_data = pd.read_csv('SARA_validation.csv')
 y_test = test_data.loc[:,'levelAsphaltene'].values
 x_test = test_data.drop(['ID', 'Name','%Saturate', 'levelSaturate', '%Aromatic', 'levelAromatic', '%Resin', 'levelResin', '%Asphaltene', 'levelAsphaltene', 'type'],axis=1)
 test_IDs = test_data.loc[:,'ID'].values
