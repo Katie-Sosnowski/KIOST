@@ -10,7 +10,7 @@ The "SARA" folder includes separate train files for the separate replicates of d
 
 The file "SA_train.py" is for training an SVM model (i.e. determining the best hyperparameters using training data) for determining relative saturate and asphaltene levels. It requires that the user enter a training file name that will be split into test and train data multiple times, as well as the column of labels to use (i.e. which of the 7 models to train). Options for labels include "levelSat_4classQuartiles", "levelSat_2classMedian", "levelSat_3classRange", "levelAsp_4classQuartiles", "levelAsp_3classQuartiles", "levelAsp_3classRange1530", and "levelAsp_3classRange1020". These are described in the manuscript.
 
-The file "SA_val.py" is for validating any of the above 7 models on the independent validation set. It requires that the user enter the column of labels as above, the display labels (for generating a confusion matrix with the appropriate class labels) and the SVM parameters chosen from training (ker, gam, c).
+The file "SA_val.py" is for validating any of the above 7 models on the independent validation set. It requires that the user enter the column of labels as above, the display labels (for generating a confusion matrix with the appropriate class labels) and the SVM parameters chosen from training (ker, gam, c). The "classes" list should also be updated to reflect the correct number of classes depending on the model being run, in order for the confusion matrix to correctly generate.
 
 The "excel_files" folder includes Excel files, which are not called by the Python scripts, but are included in order to visualize how the labels were created using the "=IFS" function in Excel (as .csv files hide this information). 
 
