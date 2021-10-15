@@ -48,8 +48,11 @@ test_IDs = test_data.loc[:,'ID'].values
 
 # Define PCA parameters
 PCA = PCA(n_components=10, svd_solver='randomized', whiten=True)
+
 # Fit training data
 X_train = PCA.fit_transform(x_train)
+print('Explained variance:', PCA.explained_variance_ratio_)
+
 # Run PCA on test data
 X_test = PCA.transform(x_test)
 
