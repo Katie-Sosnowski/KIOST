@@ -1,6 +1,6 @@
-# Machine learning techniques for chemical and type analysis of oil spill samples via field-ready handheld spectrophotometer device
+# Machine learning techniques for chemical and type analysis of ocean oil samples via handheld spectrophotometer device
 
-Datasets and Python scripts associated with the paper "Machine learning techniques for chemical and type analysis of oil spill samples via field-ready handheld spectrophotometer device" by Sosnowski et al. (manuscript in progress), a collaboration between The University of Arizona in Tucson, Arizona and Korea Institute of Ocean Science and Technology in Geoje-si, South Korea.
+Datasets and Python scripts associated with the paper "Machine learning techniques for chemical and type analysis of ocean oil samples via handheld spectrophotometer device" by Sosnowski et al. (2022), a collaboration between The University of Arizona in Tucson, Arizona and Korea Institute of Ocean Science and Technology in Geoje-si, South Korea.
 
 # SVM 
 The SVM (support vector machine) folder includes two folders, "SARA" and "Type", which include the datasets and Python scripts for SARA (saturate and asphaltene) and oil type analysis, respectively.
