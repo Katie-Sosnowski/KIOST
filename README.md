@@ -3,7 +3,7 @@
 Datasets and Python scripts associated with the paper "Machine learning techniques for chemical and type analysis of ocean oil samples via handheld spectrophotometer device" by Sosnowski et al. (2022), a collaboration between The University of Arizona in Tucson, Arizona and Korea Institute of Ocean Science and Technology in Geoje-si, South Korea.
 
 # SVM 
-The SVM (support vector machine) folder includes two folders, "SARA" and "Type", which include the datasets and Python scripts for SARA (saturate and asphaltene) and oil type analysis, respectively.
+The "SVM" (support vector machine) folder includes two folders, "SARA" and "Type", which include the datasets and Python scripts for SARA (saturate and asphaltene) and oil type analysis, respectively.
 
 ### SARA
 The "SARA" folder includes separate train files for the separate replicates of data as described in the manuscript. These are subsequently split into test and train samples during training. It also includes a composite train data file and the independent validation dataset which are both called during validation.
@@ -28,5 +28,8 @@ The file "OTA_031221.py" is the code for running the custom-built Oil Type Analy
 
 # Regression 
 The "regression" folder includes datasets and code for running regression experiments on SARA data included in the supplementary information.
+
+# RF
+The "RF" (random forest) folder includes datasets and code for random forest supplementary experiments and is organized similarly to the SVM folder.
 
 
